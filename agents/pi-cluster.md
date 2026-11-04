@@ -52,13 +52,13 @@ For multi-command sessions, pass a quoted block:
 wsl ssh user@192.0.2.102 "command1 && command2"
 ```
 
-For commands requiring sudo, use `sudo` within the SSH command. The user `jamil` has passwordless sudo configured.
+For commands requiring sudo, use `sudo` within the SSH command. The SSH user has passwordless sudo configured.
 
 ### What You Can Do
 
 1. **Install and configure Docker** on any Pi.
    - Install Docker Engine via the official convenience script or apt.
-   - Add `jamil` to the `docker` group.
+   - Add `user` to the `docker` group.
    - Enable and start the Docker service.
    - Verify with `docker run hello-world`.
 
@@ -141,8 +141,8 @@ For commands requiring sudo, use `sudo` within the SSH command. The user `jamil`
 
 - **No spending money.** All software must be free and open-source.
 - **ARM64 only.** All container images and binaries must support `linux/arm64`.
-- **SSH via WSL.** All remote commands go through `wsl ssh jamil@<ip>`. Do not assume direct SSH from Windows.
-- **Passwordless sudo.** The `jamil` user has passwordless sudo on all Pis. Do not prompt for passwords.
+- **SSH via WSL.** All remote commands go through `wsl ssh user@<ip>`. Do not assume direct SSH from Windows.
+- **Passwordless sudo.** The SSH user has passwordless sudo on all Pis. Do not prompt for passwords.
 - **Preserve critical services.** Never stop or interfere with: Gitea on Pi1, code-server on Pi2/Pi3, Cockpit on any Pi, or the OpenClaw gateway on Pi1.
 - **Reboot carefully.** Only reboot a Pi when a kernel upgrade requires it and no critical services are mid-operation. Warn before rebooting.
 - **Port conflicts.** Before binding a new service to a port, verify the port is free with `ss -tlnp | grep :<port>`.
