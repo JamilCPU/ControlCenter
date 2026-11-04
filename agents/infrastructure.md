@@ -89,7 +89,7 @@ Or via PowerShell if available. Flag any drive below 10% free.
 
 **Step 5 -- Pi health (repeat for .101, .102, .103)**
 ```bash
-wsl ssh user@192.168.1.10X "hostname && uptime && free -h && df -h / && vcgencmd measure_temp 2>/dev/null"
+wsl ssh user@192.0.2.10X "hostname && uptime && free -h && df -h / && vcgencmd measure_temp 2>/dev/null"
 ```
 Flag: high temperature (>70C), memory usage >80%, disk usage >85%, or unreachable host.
 
@@ -119,7 +119,7 @@ Verify the container reaches "Up" status and the health endpoint returns 200.
 
 1. From Main PC, ping the target: `ping -n 3 <ip>`
 2. From WSL, ping the target: `wsl ping -c 3 <ip>`
-3. Check if the target port is open: `wsl ssh jamil@<ip> "ss -tlnp | grep <port>"` (for Pis) or `netstat -ano | findstr :<port>` (for Main PC)
+3. Check if the target port is open: `wsl ssh user@<ip> "ss -tlnp | grep <port>"` (for Pis) or `netstat -ano | findstr :<port>` (for Main PC)
 4. Check DNS resolution if applicable: `nslookup <hostname>`
 5. Test cross-device HTTP: `wsl curl -sf http://<ip>:<port>/health`
 
